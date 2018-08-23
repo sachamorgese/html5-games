@@ -1,7 +1,9 @@
+// OOP POWAH
 class KeyControls {
   constructor() {
+    // Initialize the key obejct
     this.keys = {};
-    // Bind event handlers
+    // Keydown Events
     document.addEventListener(
       'keydown',
       e => {
@@ -41,15 +43,15 @@ class KeyControls {
     if (this.keys[40] || this.keys[83]) return 1;
     return 0;
   }
-  
+
   key(key, value) {
     if (value !== undefined) {
       this.keys[key] = value;
     }
     return this.keys[key];
   }
-  
-  reset () {
+
+  reset() {
     for (let key in this.keys) {
       this.keys[key] = false;
     }
