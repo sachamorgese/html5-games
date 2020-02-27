@@ -1,14 +1,17 @@
 class KeyControls {
+  // To add: Functions for keys
+  // To add: Customizable action button
   constructor() {
     this.keys = {};
     // Bind event handlers
     document.addEventListener(
       'keydown',
       e => {
-        if ([37, 38, 39, 40].indexOf(e.which) >= 0) {
+        const { which } = e;
+        if ([37, 38, 39, 40].includes(which)) {
           e.preventDefault();
         }
-        this.keys[e.which] = true;
+        this.keys[which] = true;
       },
       false,
     );

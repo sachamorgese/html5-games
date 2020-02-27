@@ -7,9 +7,9 @@ class MouseControls {
     this.pressed = false;
     this.released = false;
     // Handlers
-    document.addEventListener('mousemove', this.move.bind(this), false);
-    document.addEventListener('mousedown', this.down.bind(this), false);
-    document.addEventListener('mouseup', this.up.bind(this), false);
+    document.addEventListener('mousemove', this.move, false);
+    document.addEventListener('mousedown', this.down, false);
+    document.addEventListener('mouseup', this.up, false);
   }
 
   mousePosFromEvent({ clientX, clientY }) {
@@ -21,20 +21,20 @@ class MouseControls {
     pos.y = (clientY - rect.top) * yr;
   }
 
-  move(e) {
+  move = (e) => {
     this.mousePosFromEvent(e);
-  }
+  };
 
-  down(e) {
+  down = (e) => {
     this.isDown = true;
     this.pressed = true;
     this.mousePosFromEvent(e);
-  }
+  };
 
-  up() {
+  up = () => {
     this.isDown = false;
     this.released = true;
-  }
+  };
 
   update() {
     this.released = false;
