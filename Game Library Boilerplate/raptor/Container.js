@@ -20,6 +20,9 @@ class Container {
       if (child.update) {
         child.update(dt, t);
       }
+      if (child.dead) {
+        this.remove(child)
+      }
     });
   }
 

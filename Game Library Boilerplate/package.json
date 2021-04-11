@@ -5,13 +5,14 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babelify": "^8.0.0",
+    "@babel/core": "^7.13.15",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.15",
+    "babelify": "^10.0.0",
     "budo": "^11.3.2"
   },
   "scripts": {
-    "start": "budo src/main.js:build.js --live -- -t [ babelify --presets [ env ] ]"
+    "start": "budo src/main.js:build.js --live -- -t [ babelify --plugins [ @babel/plugin-proposal-class-properties ] --presets [ @babel/preset-env ] ]"
   },
   "prettier": {
     "singleQuote": true,

@@ -21,11 +21,11 @@ class MouseControls {
     pos.y = (clientY - rect.top) * yr;
   }
 
-  move(e) {
+  move = (e) => {
     this.mousePosFromEvent(e);
   };
 
-  down() {
+  down = (e) => {
     this.isDown = true;
     this.pressed = true;
     this.mousePosFromEvent(e);

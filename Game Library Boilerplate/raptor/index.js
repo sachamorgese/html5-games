@@ -6,6 +6,7 @@ import CanvasRenderer from './renderer/CanvasRenderer';
 import Texture from './Texture';
 import Sprite from './Sprite';
 import Game from './Game';
+import TileSprite from './TileSprite';
 import math from '../utils/math';
 
 export default {
@@ -17,5 +18,6 @@ export default {
   Texture,
   Sprite,
   Game,
+  TileSprite,
   math,
 };
