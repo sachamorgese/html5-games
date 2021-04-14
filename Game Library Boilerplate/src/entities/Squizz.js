@@ -21,25 +21,25 @@ class Squizz extends TileSprite {
     }
 
     // Set up the different animations
-    const { anims } = this;
-    anims.add(
-      'walk',
-      [0, 1, 2, 3].map((x) => ({ x, y: 0 })),
-      0.07 * this.speed,
-    );
-    anims.add(
-      'idle',
-      [
-        { x: 0, y: 0 },
-        { x: 4, y: 0 },
-        { x: 4, y: 1 },
-        { x: 4, y: 0 },
-      ],
-      0.001 * this.speed,
-    );
-
-    // Play one of them!
-    anims.play('walk');
+    // const { anims } = this;
+    // anims.add(
+    //   'walk',
+    //   [0, 1, 2, 3].map((x) => ({ x, y: 0 })),
+    //   0.07 * this.speed,
+    // );
+    // anims.add(
+    //   'idle',
+    //   [
+    //     { x: 0, y: 0 },
+    //     { x: 4, y: 0 },
+    //     { x: 4, y: 1 },
+    //     { x: 4, y: 0 },
+    //   ],
+    //   0.001 * this.speed,
+    // );
+    //
+    // // Play one of them!
+    // anims.play('walk');
   }
   update(dt, t) {
     super.update(dt);
