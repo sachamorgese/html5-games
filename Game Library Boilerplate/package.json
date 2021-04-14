@@ -4,18 +4,24 @@
   "description": "Boilerplate to use for the games I'm going to make",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.13.15",
     "babelify": "^10.0.0",
-    "budo": "^11.3.2"
+    "budo": "^11.3.2",
+    "prettier": "^2.2.1"
   },
   "scripts": {
-    "start": "budo src/main.js:build.js --live -- -t [ babelify --plugins [ @babel/plugin-proposal-class-properties ] --presets [ @babel/preset-env ] ]"
+    "start": "budo src/main.ts:build.js --live -- -p [ tsify ]"
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "dependencies": {
+    "tsify": "^5.0.2",
+    "typescript": "^4.2.4"
   }
 }

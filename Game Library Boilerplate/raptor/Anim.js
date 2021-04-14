@@ -20,3 +20,5 @@ class Anim {
     this.curTime = 0;
   }
 }
+
+export default Anim

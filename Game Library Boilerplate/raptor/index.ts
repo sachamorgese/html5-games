@@ -7,6 +7,9 @@ import Texture from './Texture';
 import Sprite from './Sprite';
 import Game from './Game';
 import TileSprite from './TileSprite';
+import AnimManager from './AnimManager'
+import TileMap from './TileMap';
+import Level from './Level';
 import math from '../utils/math';
 
 export default {
@@ -19,5 +22,8 @@ export default {
   Sprite,
   Game,
   TileSprite,
+  AnimManager,
+  TileMap,
+  Level,
   math,
 };
