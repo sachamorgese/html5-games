@@ -1,32 +1,43 @@
-import Anim from './Anim'
+import Anim from './Anim';
+import TileSprite from './TileSprite';
+import { Pos } from '../utils/types';
+
+type Anims = {
+  [name: string]: Anim;
+};
 
 class AnimManager {
-  constructor(e) {
+  private anims: Anims;
+  private running: boolean;
+  private frameSource;
+  private current: string;
+
+  constructor(e: TileSprite) {
     this.anims = {};
     this.running = false;
     this.frameSource = e.frame || e;
-    this.current = null;
+    this.current = '';
   }
 
-  add(name, frames, speed) {
+  add(name: string, frames: Pos[], speed: number) {
     this.anims[name] = new Anim(frames, speed);
     return this.anims[name];
   }
 
-  update(dt) {
+  update(dt: number) {
     const { current, anims, frameSource } = this;
     if (!current) {
       return;
     }
     const anim = anims[current];
-    anim.update(dt)
+    anim.update(dt);
 
     // Sync the TileSprite frame
     frameSource.x = anim.frame.x;
     frameSource.y = anim.frame.y;
   }
 
-  play(anim) {
+  play(anim: string) {
     const { current, anims } = this;
     if (anim === current) {
       return;
@@ -36,8 +47,8 @@ class AnimManager {
   }
 
   stop() {
-    this.current = null;
+    this.current = '';
   }
 }
 
-export default AnimManager
+export default AnimManager;

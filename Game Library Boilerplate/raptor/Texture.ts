@@ -1,5 +1,7 @@
 class Texture {
-  constructor(url) {
+  private img;
+
+  constructor(url: string) {
     this.img = new Image();
     this.img.src = url;
   }

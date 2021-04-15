@@ -1,17 +1,22 @@
+import Container from '../Container';
+
 class CanvasRenderer {
-  constructor(w, h) {
+  readonly view: HTMLCanvasElement;
+  readonly ctx: CanvasRenderingContext2D;
+
+  constructor(private readonly w: number, private readonly h: number) {
     const canvas = document.createElement('canvas');
     this.w = canvas.width = w;
     this.h = canvas.height = h;
     this.view = canvas;
-    this.ctx = canvas.getContext('2d');
+    this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
   }
 
-  render(container, clear = true) {
+  render(container: Container<any>, clear = true) {
     const { ctx } = this;
-    function renderRec(container) {
+    function renderRec(container: Container<any>) {
       // Render the container children
-      container.children.forEach(child => {
+      container.children.forEach((child) => {
         if (child.visible === false) {
           return;
         }
@@ -45,10 +50,13 @@ class CanvasRenderer {
               img,
               child.frame.x * child.tileW,
               child.frame.y * child.tileH,
-              child.tileW, child.tileH,
-              0, 0,
-              child.tileW, child.tileH
-            )
+              child.tileW,
+              child.tileH,
+              0,
+              0,
+              child.tileW,
+              child.tileH,
+            );
           } else {
             ctx.drawImage(child.texture.img, 0, 0);
           }

@@ -1,7 +1,8 @@
 import raptor from '../raptor/';
 import Squizz from './entities/Squizz';
+import Level from './entities/Level';
 
-const { Game, Level, KeyControls, math } = raptor;
+const { Game, KeyControls, math } = raptor;
 
 const game = new Game(640, 320);
 

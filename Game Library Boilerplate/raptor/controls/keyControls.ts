@@ -1,12 +1,18 @@
+type Keys = {
+  [key: number]: boolean;
+};
+
 class KeyControls {
   // To add: Functions for keys
   // To add: Customizable action button
+  private keys: Keys;
+
   constructor() {
     this.keys = {};
     // Bind event handlers
     document.addEventListener(
       'keydown',
-      e => {
+      (e) => {
         const { which } = e;
         if ([37, 38, 39, 40].includes(which)) {
           e.preventDefault();
@@ -18,7 +24,7 @@ class KeyControls {
 
     document.addEventListener(
       'keyup',
-      e => {
+      (e) => {
         this.keys[e.which] = false;
       },
       false,
@@ -45,7 +51,7 @@ class KeyControls {
     return 0;
   }
 
-  key(key, value) {
+  key(key: number, value: boolean) {
     if (value !== undefined) {
       this.keys[key] = value;
     }

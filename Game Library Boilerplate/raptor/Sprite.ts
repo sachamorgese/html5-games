@@ -1,5 +1,15 @@
+import Texture from './Texture';
+import { Pos } from '../utils/types';
+
 class Sprite {
-  constructor(texture) {
+  private texture;
+  public pos: Pos;
+  anchor: Pos;
+  scale: Pos;
+  pivot: Pos;
+  rotation;
+
+  constructor(texture: Texture) {
     this.texture = texture;
     this.pos = { x: 0, y: 0 };
     this.anchor = { x: 0, y: 0 };

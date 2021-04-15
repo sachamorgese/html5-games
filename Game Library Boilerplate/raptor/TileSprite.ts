@@ -1,8 +1,15 @@
-import Sprite from "./Sprite.js";
-import AnimManager from "./AnimManager.js";
+import Sprite from './Sprite';
+import AnimManager from './AnimManager';
+import Texture from './Texture';
+import { Pos } from '../utils/types';
 
 class TileSprite extends Sprite {
-  constructor(texture, w, h) {
+  private readonly tileW: number;
+  private readonly tileH: number;
+  protected anims;
+  frame: Pos;
+
+  constructor(texture: Texture, w: number, h: number) {
     super(texture);
     this.tileW = w;
     this.tileH = h;
@@ -10,7 +17,7 @@ class TileSprite extends Sprite {
     this.anims = new AnimManager(this);
   }
 
-  update(dt) {
+  update(dt: number) {
     this.anims.update(dt);
   }
 

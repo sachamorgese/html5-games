@@ -1,5 +1,13 @@
+import { Pos } from '../../utils/types';
+
 class MouseControls {
-  constructor(container) {
+  private readonly el: HTMLDivElement;
+  private pos: Pos;
+  private isDown: boolean;
+  private pressed: boolean;
+  private released: boolean;
+
+  constructor(container: HTMLDivElement) {
     this.el = container || document.body;
     // State
     this.pos = { x: 0, y: 0 };
@@ -12,20 +20,28 @@ class MouseControls {
     document.addEventListener('mouseup', this.up, false);
   }
 
-  mousePosFromEvent({ clientX, clientY }) {
+  mousePosFromEvent({
+    clientX,
+    clientY,
+  }: {
+    clientX: number;
+    clientY: number;
+  }) {
     const { el, pos } = this;
+    // @ts-ignore
+    const { width = 0, height = 0 } = el;
     const rect = el.getBoundingClientRect();
-    const xr = el.width / el.clientWidth;
-    const yr = el.height / el.clientHeight;
+    const xr = width / el.clientWidth;
+    const yr = height / el.clientHeight;
     pos.x = (clientX - rect.left) * xr;
     pos.y = (clientY - rect.top) * yr;
   }
 
-  move = (e) => {
+  move = (e: MouseEvent) => {
     this.mousePosFromEvent(e);
   };
 
-  down = (e) => {
+  down = (e: MouseEvent) => {
     this.isDown = true;
     this.pressed = true;
     this.mousePosFromEvent(e);
@@ -34,7 +50,7 @@ class MouseControls {
   up() {
     this.isDown = false;
     this.released = true;
-  };
+  }
 
   update() {
     this.released = false;

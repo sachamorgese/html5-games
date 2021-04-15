@@ -1,11 +1,17 @@
+import { Pos } from '../utils/types';
+
 class Anim {
-  constructor(frames, rate) {
+  private curTime: number = 0;
+  private curFrame: number = 0;
+  frame: Pos = { x: 0, y: 0 };
+
+  constructor(private readonly frames: Pos[], private rate: number) {
     this.frames = frames;
     this.rate = rate;
     this.reset();
   }
 
-  update(dt) {
+  update(dt: number) {
     const { rate, frames } = this;
     if ((this.curTime += dt) > rate) {
       this.curFrame++;
@@ -21,4 +27,4 @@ class Anim {
   }
 }
 
-export default Anim
+export default Anim;
