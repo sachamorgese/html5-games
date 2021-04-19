@@ -17,7 +17,7 @@ class TileSprite extends Sprite {
     this.anims = new AnimManager(this);
   }
 
-  update(dt: number) {
+  update(dt: number, t?: number) {
     this.anims.update(dt);
   }
 

@@ -3,16 +3,18 @@ import TileSprite from './TileSprite';
 import Texture from './Texture';
 import { Pos } from '../utils/types';
 
-class TileMap extends Container<ContainerChild> {
-  private w: number;
-  private h: number;
+export type Tile = ContainerChild & TileSprite;
+
+class TileMap extends Container<Tile> {
+  readonly w: number;
+  readonly h: number;
 
   constructor(
     tiles: Pos[],
     private readonly mapW: number,
     private readonly mapH: number,
-    private readonly tileW: number,
-    private readonly tileH: number,
+    readonly tileW: number,
+    readonly tileH: number,
     texture: Texture,
   ) {
     super();
@@ -55,6 +57,16 @@ class TileMap extends Container<ContainerChild> {
 
   tileAtPixelPos(pos: Pos) {
     return this.tileAtMapPos(this.pixelToMapPos(pos));
+  }
+
+  setFrameAtMapPos(mapPos: Pos, frame: Pos) {
+    const tile = this.tileAtMapPos(mapPos);
+    tile.frame = frame;
+    return tile;
+  }
+
+  setFrameAtPixelPos(pos: Pos, frame: Pos) {
+    return this.setFrameAtMapPos(this.pixelToMapPos(pos), frame);
   }
 }
 

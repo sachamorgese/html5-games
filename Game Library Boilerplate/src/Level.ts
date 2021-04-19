@@ -1,6 +1,7 @@
-import Texture from '../../raptor/Texture';
-import TileMap from '../../raptor/TileMap';
-import math from '../../utils/math';
+import Texture from '../raptor/Texture';
+import TileMap, { Tile } from '../raptor/TileMap';
+import math from '../utils/math';
+import { Pos } from '../utils/types';
 
 type Bounds = {
   left: number;
@@ -9,10 +10,13 @@ type Bounds = {
   bottom: number;
 };
 
-const texture = new Texture('../../res/images/tiles.png');
+const texture = new Texture('res/images/tiles.png');
 
 class Level extends TileMap {
   bounds: Bounds;
+  blank: Pos;
+  lastTile: Tile | null;
+  totalFreeSpots: number;
 
   constructor(w: number, h: number) {
     const tileSize = 32;
@@ -20,6 +24,7 @@ class Level extends TileMap {
     const mapH = Math.ceil(h / tileSize);
 
     const level = [];
+    let totalFreeSpots = 0;
     for (let i = 0; i < mapW * mapH; i++) {
       const isTopOrBottom = i < mapW || Math.floor(i / mapW) === mapH - 1;
       const isLeft = i % mapW === 0;
@@ -37,6 +42,7 @@ class Level extends TileMap {
       } else {
         // Random ground tile
         level.push({ x: math.rand(1, 5), y: 0 });
+        totalFreeSpots++;
       }
     }
 
@@ -48,6 +54,24 @@ class Level extends TileMap {
       top: tileSize * 2,
       bottom: h - tileSize * 2,
     };
+
+    this.totalFreeSpots = totalFreeSpots;
+    this.blank = { x: 0, y: 0 };
+    this.lastTile = null;
+  }
+
+  checkGround(pos: Pos) {
+    const { blank, lastTile } = this;
+    const tile = this.tileAtPixelPos(pos);
+    if (lastTile === tile) {
+      return 'checked';
+    }
+    this.lastTile = tile;
+    if (tile.frame !== blank && !!blank) {
+      this.setFrameAtPixelPos(pos, blank);
+      return 'solid';
+    }
+    return 'cleared';
   }
 }
 

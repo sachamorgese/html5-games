@@ -15,7 +15,7 @@ class Container<T extends Partial<ContainerChild>> {
   }
 
   // Container methods
-  add(child: T) {
+  add(child: T): T {
     this.children.push(child);
     return child;
   }

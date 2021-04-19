@@ -1,27 +1,25 @@
+import GameScreen, { Stats } from './screens/GameScreen';
 import raptor from '../raptor/';
-import Squizz from './entities/Squizz';
-import Level from './entities/Level';
+import LogoScreen from './screens/LogoScreen';
+import TitleScreen from './screens/TitleScreen';
+import GameOverScreen from './screens/GameOverScreen';
 
-const { Game, KeyControls, math } = raptor;
+const { Game, KeyControls } = raptor;
 
-const game = new Game(640, 320);
-
-const { scene, w, h } = game;
-
+const game = new Game(640, 480);
 const controls = new KeyControls();
-const squizz = new Squizz(controls);
-const level = new Level(w, h);
-scene.add(level);
-scene.add(squizz);
 
-game.run(() => {
-  const { pos } = squizz;
-  const {
-    bounds: { top, bottom, left, right },
-  } = level;
+function titleScreen() {
+  game.scene = new TitleScreen(game, controls, newGame);
+}
 
-  squizz.pos = {
-    x: math.clamp(pos.x, left, right),
-    y: math.clamp(pos.y, top, bottom),
-  };
-});
+function gameOverScreen(result: Stats) {
+  game.scene = new GameOverScreen(game, controls, result, titleScreen);
+}
+
+function newGame() {
+  game.scene = new GameScreen(game, controls, gameOverScreen);
+}
+
+game.scene = new LogoScreen(game, titleScreen);
+game.run();

@@ -9,6 +9,7 @@ import Game from './Game';
 import TileSprite from './TileSprite';
 import AnimManager from './AnimManager';
 import TileMap from './TileMap';
+import Camera from './Camera';
 import math from '../utils/math';
 
 export default {
@@ -23,5 +24,6 @@ export default {
   TileSprite,
   AnimManager,
   TileMap,
+  Camera,
   math,
 };
